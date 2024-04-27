@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    // Declaración de variables
+    float baseMayor, baseMenor, altura, area;
+
+    // Solicitar al usuario los datos necesarios
+    printf("Ingrese la longitud de la base mayor del trapecio: ");
+    scanf("%f", &baseMayor);
+
+    printf("Ingrese la longitud de la base menor del trapecio: ");
+    scanf("%f", &baseMenor);
+
+    printf("Ingrese la altura del trapecio: ");
+    scanf("%f", &altura);
+
+    // Calcular el área del trapecio
+    area = (baseMayor + baseMenor) * altura / 2;
+
+    // Mostrar el resultado
+    printf("El área del trapecio es: %.2f\n", area);
+
+    return 0;
+}
