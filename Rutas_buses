@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+
+// Función para mostrar las paradas de una ruta de bus
+int mostrarParadas(char rutas[][5], char paradas[][8][20], int numRutas, char nombreRuta[]) {
+    int i = 0;
+    while (i < numRutas) {
+        if (strcmp(rutas[i], nombreRuta) == 0) {
+            printf("Las paradas de la ruta %s son:\n", nombreRuta);
+            for (int j = 0; j < 8; j++) {
+                if (strcmp(paradas[i][j], "") != 0) {
+                    printf("- %s\n", paradas[i][j]);
+                } else {
+                    return 0; // Indicamos que se encontró la ruta
+                }
+            }
+            return 1; // Indicamos que se encontró la ruta
+        }
+        i++;
+    }
+    printf("La ruta ingresada no existe.\n");
+    return 0; // Si no se encontró la ruta
+}
+
+int main() {
+    char rutas[][5] = {"B10", "K16", "G11", "H20"};
+    char paradas[][8][20] = {
+        {"Carrera 90", "Avenida Cali", "Granja - Carrera 77", "Boyacá", "Avenida 68", "Carrera 53", "Carrera 47", "Calle 85"},
+        {"Avenida El Dorado", "Corferias", "Quinta Paredes", "CAN", "El Tiempo", "Avenida Rojas", "Modelia", "Portal Eldorado"},
+        {"Calle 187", "Toberín", "Calle 146", "Pepe Sierra", "Calle 106", "Virrey", "Calle 85", "Héroes"},
+        {"Calle 26", "Calle 19", "Avenida Jiménez", "Restrepo", "Quiroga", "Calle 40 Sur", "Consuelo", "Molinos"}
+    };
+    int numRutas = sizeof(rutas) / sizeof(rutas[0]);
+
+    int opcion = 0;
+    char ruta[5];
+
+    while (opcion != 3) {
+        printf("\nMENU:\n");
+        printf("1. Consultar paradas de una ruta de bus\n");
+        printf("2. Conocer rutas que funcionan en feriados\n");
+        printf("3. Salir\n");
+        printf("Seleccione una opcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                printf("Digite la ruta de bus sobre la que desea conocer las paradas: ");
+                scanf("%s", ruta);
+                if (!mostrarParadas(rutas, paradas, numRutas, ruta)) {
+                    printf("Opcion no valida. Por favor, seleccione una opcion valida.\n");
+                }
+                break;
+            case 2:
+                printf("Rutas que funcionan en feriados:\n");
+                printf("- H20\n");
+                printf("- G11\n");
+                break;
+            case 3:
+                break; // Salir del bucle
+            default:
+                printf("Opcion no valida. Por favor, seleccione una opcion valida.\n");
+        }
+    }
+
+    printf("¡Hasta luego!\n");
+
+    return 0;
+}
